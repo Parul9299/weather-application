@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import BG_Video from './assets/weather.mp4'
 
 function App() {
   const [data, setData] = useState({})
@@ -20,16 +21,19 @@ function App() {
 
   return (
     <div className='app'>
-      <div className='search'>
-        <input
-          value={location}
-          onChange={event => setLocation(event.target.value)}
-          onKeyDown={searchLocation}
-          type='text'
-          placeholder='Enter Location'
-        />
-      </div>
+
+      <video src={BG_Video} autoPlay muted loop />
+
       <div className="container">
+        <div className='search'>
+          <input
+            value={location}
+            onChange={event => setLocation(event.target.value)}
+            onKeyDown={searchLocation}
+            type='text'
+            placeholder='Enter Location'
+          />
+        </div>
         <div className="top">
           <div className="location">
             <p>{data.name}</p>
@@ -42,7 +46,7 @@ function App() {
           </div>
         </div>
 
-        {data.name != undefined &&
+        {data.name !== undefined &&
           <div className="bottom">
             <div className="feel">
               {data.main ? <p className='bold'>{data.main.feels_like.toFixed()}&deg;F</p> : null}
@@ -58,8 +62,6 @@ function App() {
             </div>
           </div>
         }
-
-
 
       </div>
     </div>
